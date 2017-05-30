@@ -2,6 +2,7 @@ package example.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import example.config.SerializationConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +16,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -32,15 +32,10 @@ public class ExampleControllerTest {
     private ExampleController productController;
 
     private MockMvc mvc;
+    private static final ObjectMapper objectMapper  = new SerializationConfig().objectMapper();
 
     @Before
     public void setup() {
-
-        ObjectMapper objectMapper = new Jackson2ObjectMapperBuilder()
-                .featuresToDisable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-                .indentOutput(true)
-                .build();
-
         mvc = MockMvcBuilders
                 .standaloneSetup(productController)
                 .setMessageConverters(new MappingJackson2HttpMessageConverter(objectMapper))
