@@ -1,7 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '1.5.7.RELEASE'
     id 'java'
-    id 'groovy'
 }
 
 bootRepackage {
@@ -17,7 +16,6 @@ configurations {
 }
 
 dependencies {
-    runtime "org.codehaus.groovy:groovy"
 
     compile (
             "org.slf4j:slf4j-api",
