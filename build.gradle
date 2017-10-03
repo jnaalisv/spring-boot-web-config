@@ -16,12 +16,20 @@ configurations {
 }
 
 dependencies {
+    runtime (
+            "org.slf4j:jcl-over-slf4j",
+            "org.slf4j:jul-to-slf4j",
+            "org.slf4j:log4j-over-slf4j",
+            "ch.qos.logback:logback-classic"
+    )
 
     compile (
             "org.slf4j:slf4j-api",
             "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
-            "org.springframework.boot:spring-boot-starter",
-            "org.springframework.boot:spring-boot-starter-web",
+            "com.fasterxml.jackson.core:jackson-databind",
+            "org.springframework.boot:spring-boot",
+            "org.springframework:spring-webmvc",
+            "org.yaml:snakeyaml",
             "org.springframework.boot:spring-boot-starter-jetty"
     )
 
