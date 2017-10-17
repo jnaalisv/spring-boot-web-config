@@ -6,16 +6,17 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory
 import org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 public class ExampleApplication {
 
     @Bean
-    public EmbeddedServletContainerFactory servletContainer() {
+    public EmbeddedServletContainerFactory servletContainer(Environment environment) {
         JettyEmbeddedServletContainerFactory factory = new JettyEmbeddedServletContainerFactory();
-        factory.setPort(9000);
-        factory.setContextPath("/example");
+        factory.setPort(environment.getProperty("server.port", Integer.class));
+        factory.setContextPath("");
         return factory;
     }
 
